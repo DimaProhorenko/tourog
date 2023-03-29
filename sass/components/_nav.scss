@@ -45,6 +45,10 @@
             1px 1px 0 transparent;
         transition: color abs.$duration abs.$timing, text-shadow abs.$duration abs.$timing;
 
+        @include abs.for-tablet-up {
+            font-size: 3rem;
+        }
+
         &:hover {
             color: abs.$clr-bg;
             text-shadow:
