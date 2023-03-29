@@ -1,3 +1,32 @@
+@use '../abstracts/' as abs;
+
 .overflow {
     overflow-x: hidden;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hover-underline-grow {
+    position: relative;
+    padding-block-end: .25em;
+
+    &:hover::before {
+        scale: 1;
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: abs.$clr-text;
+        transform-origin: center left;
+        scale: 0 1;
+        @include abs.transition(scale);
+        @include abs.absolute(bottom 0 left 0);
+    }
 }

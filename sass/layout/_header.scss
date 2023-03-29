@@ -1,11 +1,12 @@
 @use '../abstracts/' as abs;
 
 .header {
-    @include abs.absolute(top 0 left 0);
+    @include abs.fixed(top 0 left 0);
     width: 20%;
     height: 100vh;
+    border-right: 1px solid rgba(255, 255, 255, .15);
     max-width: abs.toRem(100);
-    position: relative;
+    z-index: 1000;
 
     &__container {
         height: 100%;
@@ -16,5 +17,13 @@
         padding-block: 2em;
         position: relative;
         z-index: 101;
+    }
+
+    &__follow {
+        display: block;
+        rotate: -90deg;
+        font-size: 1.5rem;
+        padding: .15em;
+        width: max-content;
     }
 }

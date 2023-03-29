@@ -1,21 +1,21 @@
 @use '../abstracts/' as abs;
 
 .nav {
-    position: absolute;
-    inset: 0;
-    z-index: 100;
-    overflow: hidden;
-    translate: 100% 0;
-    background-color: abs.$clr-primary;
+    // position: absolute;
+    // inset: 0;
+    // z-index: 100;
+    // overflow: hidden;
+    // translate: 100% 0;
+    // background-color: abs.$clr-primary;
 
-    &__overlay {
-        position: absolute;
-        inset: 0;
-        background-color: abs.$clr-bg;
-        z-index: 1;
-        scale: 0 1;
-        transform-origin: center right;
-    }
+    // &__overlay {
+    //     position: absolute;
+    //     inset: 0;
+    //     background-color: abs.$clr-bg;
+    //     z-index: 1;
+    //     scale: 0 1;
+    //     transform-origin: center right;
+    // }
 
 
     &__list {
@@ -35,6 +35,7 @@
 
     &__link {
         font-size: 2rem;
+        font-size: clamp(2rem, 0.8rem + 5.12vw, 4rem);
         font-family: abs.$ff-headings;
         text-transform: uppercase;
         letter-spacing: 3px;
@@ -45,9 +46,11 @@
             1px 1px 0 transparent;
         transition: color abs.$duration abs.$timing, text-shadow abs.$duration abs.$timing;
 
-        @include abs.for-tablet-up {
-            font-size: 3rem;
-        }
+        // @include abs.for-tablet-up {
+        //     font-size: 3rem;
+        // }
+
+        
 
         &:hover {
             color: abs.$clr-bg;

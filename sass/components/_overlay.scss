@@ -1,0 +1,31 @@
+@use '../abstracts/' as abs;
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    overflow: hidden;
+    translate: 100% 0;
+    background-color: abs.$clr-primary;
+
+    &__bg {
+        position: absolute;
+        inset: 0;
+        background-color: abs.$clr-bg;
+        z-index: 1;
+        scale: 0 1;
+        transform-origin: center right;
+    }
+
+    &__content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+    }
+
+    &__title {
+        font-size: 2rem;
+        font-size: clamp(2rem, 1.4rem + 2.56vw, 3rem);
+        margin-block-end: .5em;
+    }
+}

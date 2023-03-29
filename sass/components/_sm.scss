@@ -1,0 +1,21 @@
+@use '../abstracts/' as abs;
+
+.sm {
+    display: flex;
+    gap: 1em;
+
+    &__link {
+        display: inline-block;
+        padding: .25em;
+        font-size: 1.5rem;
+        @include abs.transition(color);
+
+        &:hover {
+            color: abs.$clr-primary;
+        }
+
+        @include abs.for-tablet-up {
+            font-size: 2rem;
+        }
+    }
+}
