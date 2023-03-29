@@ -58,19 +58,34 @@
         letter-spacing: 1px;
         text-transform: uppercase;
         margin-block-end: .25em;
+        position: relative;
 
         &::before,
         &::after {
             font-size: .5em;
             filter: blur(3px);
+            position: absolute;
+            bottom: 0;
         }
 
         &::before {
             content: attr(data-prev);
+            left: 0;
+            translate: -100% 0;
+
+            @include abs.for-tablet-up {
+                translate: calc(-100% - 1rem) 0;
+            }
         }
 
         &::after {
             content: attr(data-next);
+            right: 0;
+            translate: 100% 0;
+
+            @include abs.for-tablet-up {
+                translate: calc(100% + 1rem) 0;
+            }
         }
     }
 
