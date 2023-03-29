@@ -1,0 +1,19 @@
+@use '../abstracts/' as abs;
+
+.burger {
+    display: block;
+    width: abs.toRem(40);
+    height: abs.toRem(40);
+    @include abs.flex-center;
+    flex-direction: column;
+    row-gap: 6px;
+
+    &__line {
+        width: 90%;
+        height: 4px;
+        background-color: abs.$clr-burger-line;
+        transform-origin: top left;
+        pointer-events: none;
+        border-radius: 5px;
+    }
+}

@@ -1,0 +1,21 @@
+@use './functions' as f;
+
+$clr-primary: #75dab4;
+$clr-text: #fff;
+$clr-text2: #212529;
+$clr-bg: #161619;
+$clr-bg2: #fff;
+$clr-bg3: #222327;
+$clr-burger-line: #fff;
+
+$ff-regular: 'Poppins';
+$ff-headings: 'Fjalla';
+
+//bp
+$bp-phone: f.toRem(599);
+$bp-tablet: f.toRem(720);
+$bp-desktop: f.toRem(1000);
+
+// Transitions
+$duration: 300ms;
+$timing: ease-in-out;

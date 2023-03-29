@@ -1,0 +1,6 @@
+@use '../abstracts/' as abs;
+
+.logo {
+    display: block;
+    max-width: abs.toRem(50);
+}

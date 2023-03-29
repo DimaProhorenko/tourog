@@ -1,0 +1,62 @@
+@use '../abstracts/' as abs;
+
+.header {
+    @include abs.absolute(top 0 left 0);
+    width: 20%;
+    max-width: abs.toRem(100);
+    position: relative;
+
+    &__container {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding-block: 2em; 
+    }
+
+    &__burger {
+        position: relative;
+        z-index: 101;
+    }
+
+    &__nav {
+        @include abs.absolute-full;
+        // background-color: abs.$clr-bg;
+        z-index: 100;
+        padding-inline-start: abs.toRem(120);
+        display: flex;
+        align-items: center;
+
+        
+    }
+
+    &__list {
+
+        & > * + * {
+            margin-block-start: 1em;
+        }
+    }
+
+    &__link {
+        font-size: 2rem;
+        font-family: abs.$ff-headings;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        text-shadow:
+            -1px -1px 0 transparent,  
+            1px -1px 0 transparent,
+            -1px 1px 0 transparent,
+            1px 1px 0 transparent;
+        transition: color abs.$duration abs.$timing, text-shadow abs.$duration abs.$timing;
+
+        &:hover {
+            color: abs.$clr-bg;
+            text-shadow:
+                -1px -1px 0 abs.$clr-text,  
+                1px -1px 0 abs.$clr-text,
+                -1px 1px 0 abs.$clr-text,
+                1px 1px 0 abs.$clr-text;
+        }
+    }
+}
