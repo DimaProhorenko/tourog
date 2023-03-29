@@ -3,6 +3,15 @@ const followBtn = document.querySelector('.header__follow');
 const duration = 0.3;
 
 
+function animateHero() {
+    const tl = gsap.timeline({ duration });
+    tl.from('.header', {x: -200, opacity: 0})
+      .from('.hero', {opacity: 0}, '<')
+
+    return tl;
+}
+
+
 // Effects
 gsap.registerEffect({
     name: 'overlaySlide',
@@ -58,6 +67,7 @@ followBtn.addEventListener('click', () => {
 })
 
 
+const heroTl = animateHero();
 
 
 
