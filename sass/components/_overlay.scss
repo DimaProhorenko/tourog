@@ -1,8 +1,9 @@
 @use '../abstracts/' as abs;
 
 .overlay {
-    position: absolute;
-    inset: 0;
+    @include abs.fixed(top 0 left 0);
+    width: 100%;
+    height: 100vh;
     z-index: 100;
     overflow: hidden;
     translate: 100% 0;

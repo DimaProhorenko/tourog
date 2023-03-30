@@ -1,7 +1,7 @@
 @use '../abstracts/' as abs;
 
 .header {
-    @include abs.fixed(top 0 left 0);
+    @include abs.absolute(top 0 left 0);
     width: 20%;
     height: 100vh;
     border-right: 1px solid rgba(255, 255, 255, .15);

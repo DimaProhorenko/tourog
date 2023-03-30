@@ -1,0 +1,42 @@
+@use '../abstracts/' as abs;
+
+.intro {
+
+    &__quote {
+        font-size: abs.toRem(20);
+    }
+
+    &__author {
+        font-size: abs.toRem(26);
+        position: relative;
+
+        &::after {
+            content: '';
+            width: 80px;
+            height: 1px;
+            background-color: abs.$clr-text;
+            display: inline-block;
+            vertical-align: middle; 
+            margin-inline-start: 1em;
+        }
+    }
+
+    &__who {
+        display: block;
+        opacity: .7;
+    }
+
+    &__title {
+        font-size: 3.75rem;
+        font-size: clamp(3.75rem, 1.125rem + 11.2vw, 8.125rem);
+        margin-block-start: .25em;
+        
+
+        span {
+            display: inline-block;
+            font-size: .3em;
+            width: min-content;
+            vertical-align: top;
+        }
+    }
+}

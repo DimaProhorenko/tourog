@@ -1,7 +1,25 @@
 @use '../abstracts/' as abs;
 
 .overflow {
-    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.wrapper {
+    width: 90%;
+    max-width: abs.$max-width;
+    margin-inline: auto;
+}
+
+.section {
+    padding-block: 5em;
+
+    &__title {
+        font-size: 2rem;
+        font-size: clamp(2rem, 0.95rem + 4.4799999999999995vw, 3.75rem);
+        margin-block-end: .5em;
+    }
 }
 
 .center {
@@ -29,4 +47,46 @@
         @include abs.transition(scale);
         @include abs.absolute(bottom 0 left 0);
     }
+}
+
+.underline {
+    display: inline-block;
+    padding-block-end: .15em;
+    position: relative;
+
+    &::before {
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: abs.$clr-primary;
+        @include abs.absolute(bottom 0 left 0);
+    }
+}
+
+.flex {
+    display: flex;
+}
+
+.flex--grow {
+    flex-grow: 1;
+}
+
+.flex--half {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2em;
+
+    & > * {
+        flex-basis: 100%;
+
+        @include abs.for-tablet-up {
+            flex-basis: 45%;
+        }
+    }
+}
+
+
+.flow > * + * {
+    margin-block-start: 1em;
 }

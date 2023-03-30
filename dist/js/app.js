@@ -5,7 +5,7 @@ const duration = 0.3;
 
 function animateHero() {
     const tl = gsap.timeline({ duration });
-    tl.from('.header', {x: -200, opacity: 0})
+    tl.fromTo('.header', {scaleX: 0,}, { scaleX: 1, transformOrigin: 'center left', ease: 'back.out(2.7)', duration})
       .from('.hero', {opacity: 0}, '<')
 
     return tl;
