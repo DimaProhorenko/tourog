@@ -90,3 +90,29 @@
 .flow > * + * {
     margin-block-start: 1em;
 }
+
+.animated-text span {
+    display: inline-block;
+}
+
+.animate-before {
+    position: relative;
+    --before-scale-x: 1;
+
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        // inset: 0;
+        width: 100%;
+        height: 100%;
+        background-color: blue;
+        transform-origin: center left;
+        transform: scaleX(var(--before-scale-x));
+    }
+}
+
+.animate-circle {
+    --clip: 0%;
+    clip-path: circle(var(--clip))
+}
