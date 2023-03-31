@@ -2,7 +2,45 @@ gsap.registerPlugin(ScrollTrigger);
 
 const burgerEl = document.querySelector('.burger');
 const followBtn = document.querySelector('.header__follow');
+const preloader = document.querySelector('.preloader');
 const duration = 0.3;
+let preloaderRepeats = 0;
+let pageLoaded = false;
+
+// function createCharSpans2(targetClass) {
+//     const animatedEls = document.querySelectorAll(targetClass);
+//     let wordsArrs = [];
+//     let chars = [];
+//     animatedEls.forEach(el => {
+//         wordsArrs.push(el.innerHTML.trim().split(' '));
+//     })
+//     // const w2 = animatedEls.map(el => el.innerHTML.trim().split(' '))
+
+//     wordsArrs.forEach(arr => {
+
+//     })
+
+//     console.log(wordsArrs);
+//     // console.log(w2);
+// }
+
+// createCharSpans2('.intro h2');
+
+function createCharSpans(targetClass) {
+    const animatedEls = document.querySelectorAll(targetClass);
+    const returnChars = [];
+    animatedEls.forEach(el => { 
+        const chars = el.innerText.split('');
+        console.log(chars);
+        el.innerHTML = '';
+        chars.forEach(char => {
+            const charSpan = document.createElement('span');
+            charSpan.innerHTML = char.replace(' ', '&nbsp;');
+
+            el.appendChild(charSpan);
+        })
+    })
+}
 
 
 function animateHero() {
@@ -11,6 +49,55 @@ function animateHero() {
       .from('.hero', {opacity: 0}, '<')
 
     return tl;
+}
+
+function animatePreloaderText() {
+    createCharSpans('.preloader__text');
+    const chars = gsap.utils.toArray('.preloader__text span');
+
+    const tl = gsap.timeline();
+    
+    tl.to(chars, {
+        y: '-=20',
+        stagger: .2,
+        repeat: -1,
+        yoyo: true,
+        duration: .4,
+        onRepeat() {
+            if (loaded) {
+                preloaderRepeats += 1;
+                if (preloaderRepeats > 2) {
+                    preloaderTextTl.repeat(1).pause();
+                    animatePreloaderPane();
+                }
+            }
+        }
+       
+    } )
+    return tl;
+}
+
+function animatePreloaderPane() {
+    gsap.set('.preloader__pane', {transformOrigin: 'top left'})
+    const tl =  gsap.timeline();
+    tl.to('.preloader__pane', {  scaleX: 1 })
+      .to('.preloader__pane', {width: '100%', backgroundColor: '#75dab4'})
+      .to('.preloader__text', {opacity: 0}, '<')
+      .set('.preloader__pane', {transformOrigin: 'center', position: 'absolute'})
+      .to('.preloader__pane', {height: '100vh'})
+      .to('.preloader', {xPercent: -100, duration: 1})
+
+    return tl;
+}
+
+function hidePreloaderText() {
+    return gsap.to('.preloader__text', {opacity: 0})
+}
+
+function preloaderPaneGrow() {
+    return gsap.to('.preloader__pane', {
+        width: '100%',
+    })
 }
 
 function animateTextOnScroll() {
@@ -199,13 +286,21 @@ followBtn.addEventListener('click', () => {
     followTl.resume().reversed(!followTl.reversed());
 })
 
+const preloaderTl = gsap.timeline();
+const preloaderTextTl = animatePreloaderText();
+preloaderTl.add(preloaderTextTl);
 
-const heroTl = animateHero();
-animateTextOnScroll();
+
 // animateBeforeOnScroll();
 textRevealCircle();
 fadeRightOnScroll();
-scale();
+
+const loadTl = gsap.timeline();
+loadTl.add(preloaderTl);
+
+window.addEventListener('DOMContentLoaded', () => {
+    loaded = true;
+})
 
 // Swiper
 const heroSwiper = new Swiper('.hero__swiper', {

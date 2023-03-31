@@ -314,6 +314,35 @@ select {
   }
 }
 
+.preloader {
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-color: #161619;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.preloader__text {
+  font-size: 4.375rem;
+  letter-spacing: 4px;
+}
+.preloader__text span {
+  display: inline-block;
+}
+.preloader__pane {
+  width: 12.5rem;
+  height: 5px;
+  background-color: #fff;
+  margin-block-start: 1em;
+  transform-origin: center left;
+  transform: scaleX(0);
+}
+
 .header {
   top: 0;
   left: 0;
