@@ -77,7 +77,7 @@ function textRevealCircle() {
             scrollTrigger: {
                 trigger: el,
                 start: 'top+=150 bottom',
-                end: 'bottom+=400 bottom',
+                end: 'bottom+=300 bottom',
                 scrub: true,
                 
             }
