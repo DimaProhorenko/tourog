@@ -226,6 +226,24 @@ function scale() {
     })
 }
 
+function blockReveal(query) {
+    const targets = gsap.utils.toArray(query);
+    targets.forEach(target => {
+        gsap.set(target, {transformOrigin: 'top left'})
+        gsap.to(target, {
+            '--scale-x': 1,
+            '--scale-y': 1,
+            scrollTrigger: {
+                trigger: target,
+                start: 'top+=150 bottom',
+                end: 'bottom+=100 bottom',
+                scrub: true,
+                
+            }
+        })
+    })
+}
+
 // Effects
 gsap.registerEffect({
     name: 'overlaySlide',
@@ -294,6 +312,7 @@ preloaderTl.add(preloaderTextTl);
 // animateBeforeOnScroll();
 textRevealCircle();
 fadeRightOnScroll();
+blockReveal('.animate-block');
 
 const loadTl = gsap.timeline();
 loadTl.add(preloaderTl);
@@ -317,4 +336,11 @@ const heroSwiper = new Swiper('.hero__swiper', {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
+});
+
+const introSwiper = new Swiper('.intro__swiper', {
+    loop: true,
+    autoplay: {
+        delay: 5000,
+    }
 })

@@ -39,4 +39,20 @@
             vertical-align: top;
         }
     }
+
+    &__swiper {
+        position: relative;
+        // max-height: abs.toRem(400); 
+        margin-block-start: 5em;
+
+        @include abs.for-tablet-up {
+            max-height: abs.toRem(600);
+        }
+
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
 }

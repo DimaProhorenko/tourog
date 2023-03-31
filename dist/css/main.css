@@ -214,6 +214,24 @@ select {
   clip-path: circle(var(--clip));
 }
 
+.animate-block {
+  --scale-x: 0;
+  --scale-y: 0;
+  position: relative;
+}
+.animate-block::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: #222327;
+  z-index: 10;
+  scale: var(--scale-x) var(--scale-y);
+}
+
 .logo {
   display: block;
   max-width: 3.125rem;
@@ -504,4 +522,17 @@ select {
   font-size: 0.3em;
   width: min-content;
   vertical-align: top;
+}
+.intro__swiper {
+  position: relative;
+  margin-block-start: 5em;
+}
+@media screen and (min-width: 45rem) {
+  .intro__swiper {
+    max-height: 37.5rem;
+  }
+}
+.intro__swiper img {
+  width: 100%;
+  object-fit: cover;
 }
