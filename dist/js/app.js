@@ -243,7 +243,7 @@ function blockReveal(query) {
             ease: Power4.easeInOut,
             scrollTrigger: {
                 trigger: target,
-                start: 'top bottom',
+                start: 'top 90%',
                 end: 'top bottom',
                 toggleActions: 'restart none none none'
             }
