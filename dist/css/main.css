@@ -377,7 +377,6 @@ select {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  display: none;
 }
 .preloader__text {
   font-size: 4.375rem;
@@ -571,6 +570,7 @@ select {
 }
 .intro__swiper img {
   width: 100%;
+  min-height: 15.625rem;
   object-fit: cover;
   opacity: 0.7;
 }

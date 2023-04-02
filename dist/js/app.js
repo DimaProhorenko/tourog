@@ -85,7 +85,7 @@ function animatePreloaderPane() {
       .to('.preloader__text', {opacity: 0}, '<')
       .set('.preloader__pane', {transformOrigin: 'center', position: 'absolute'})
       .to('.preloader__pane', {height: '100vh'})
-      .to('.preloader', {xPercent: -100, duration: 1})
+      .to('.preloader', {xPercent: -100, duration: 1, ease: Power4.easeInOut})
 
     return tl;
 }
@@ -239,14 +239,13 @@ function scale() {
 function blockReveal(query) {
     const targets = gsap.utils.toArray(query);
     targets.forEach(target => {
-        // gsap.set(target, {"--scale-x": 1, "--scale-y": 1})
         const tl = gsap.timeline({
             ease: Power4.easeInOut,
             scrollTrigger: {
                 trigger: target,
-                start: 'top 90%',
+                start: 'top bottom',
                 end: 'top bottom',
-                toggleActions: 'restart none none reverse'
+                // toggleActions: 'restart none none reverse'
             }
         });
         tl.to(target, {'--scale-y': 1, ease: Power4.easeInOut})
@@ -317,9 +316,11 @@ followBtn.addEventListener('click', () => {
     followTl.resume().reversed(!followTl.reversed());
 })
 
-// const preloaderTl = gsap.timeline();
-// const preloaderTextTl = animatePreloaderText();
-// preloaderTl.add(preloaderTextTl);
+const preloaderTl = gsap.timeline();
+const preloaderTextTl = animatePreloaderText();
+preloaderTl.add(preloaderTextTl);
+
+const loadHeroTl = gsap.from('.hero', {opacity: 0})
 
 
 // animateBeforeOnScroll();
@@ -329,7 +330,8 @@ blockReveal('.animate-block');
 textFromBottom('.text-from-bt');
 
 const loadTl = gsap.timeline();
-// loadTl.add(preloaderTl);
+loadTl.add(preloaderTl);
+
 
 window.addEventListener('DOMContentLoaded', () => {
     loaded = true;

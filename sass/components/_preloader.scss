@@ -8,7 +8,7 @@
     z-index: 10000;
     @include abs.flex-center;
     flex-direction: column;
-    display: none;
+    // display: none;
 
     &__text {
         font-size: abs.toRem(70);
