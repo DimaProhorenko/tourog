@@ -1,0 +1,45 @@
+@use '../abstracts/' as abs;
+
+.services {
+    &__item {
+        text-align: center;
+        padding: 2em;
+        background-color: transparent;
+        border-radius: 8px;
+        max-width: abs.toRem(300);
+        @include abs.transition(background-color);
+        position: relative;
+
+        &::after {
+            content: '';
+            width: 30%;
+            aspect-ratio: 1;
+            background-image: url('../assets/img/dot-pattern.png');
+            background-size: 10px;
+            @include abs.absolute(bottom -2em right -1.5em);
+            opacity: 0;
+            @include abs.transition(opacity);
+        }
+
+        &:hover {
+            background-color: abs.$clr-bg;
+
+            &::after {
+                opacity: 1;
+            }
+        }
+
+
+    }
+
+    &__img {
+        margin-inline: auto;
+        width: abs.toRem(80);
+    }
+
+    &__list {
+        & > * + * {
+            margin-block-start: .5em;
+        }
+    }
+}

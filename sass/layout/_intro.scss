@@ -2,6 +2,10 @@
 
 .intro {
 
+    &__main-title {
+        text-align: left;
+    }
+
     &__quote {
         font-size: abs.toRem(20);
     }
@@ -53,6 +57,26 @@
         img {
             width: 100%;
             object-fit: cover;
+            opacity: .7;
+        }
+
+        .swiper-pagination span {
+            display: inline-block;
+            background-color: #fff;
+            border: 2px solid transparent;
+            opacity: 1;
+            margin: 0 .5em !important;
+
+            &.swiper-pagination-bullet-active {
+                border-color: #fff;
+                background-color: transparent;
+                scale: 1.5;
+            }
         }
     }
+
+    &__slide-text {
+        @include abs.absolute(bottom 2rem left 2rem);
+    }
+
 }

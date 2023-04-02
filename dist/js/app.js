@@ -59,7 +59,7 @@ function animatePreloaderText() {
     
     tl.to(chars, {
         y: '-=20',
-        stagger: .2,
+        stagger: .1,
         repeat: -1,
         yoyo: true,
         duration: .4,
@@ -193,6 +193,16 @@ function textReveal(className) {
     })
 }
 
+function textFromBottom(className) {
+    const animatedEls = document.querySelectorAll(className);
+    animatedEls.forEach(el => {
+        gsap.from(el, {y: '+= 15', opacity: 0, scrollTrigger: {
+            trigger: el,
+            start: 'top 80%',
+        }})
+    })
+}
+
 function fadeRightOnScroll() {
     const targets = gsap.utils.toArray('.fade-right');
     targets.forEach(target => {
@@ -229,18 +239,21 @@ function scale() {
 function blockReveal(query) {
     const targets = gsap.utils.toArray(query);
     targets.forEach(target => {
-        gsap.set(target, {transformOrigin: 'top left'})
-        gsap.to(target, {
-            '--scale-x': 1,
-            '--scale-y': 1,
+        // gsap.set(target, {"--scale-x": 1, "--scale-y": 1})
+        const tl = gsap.timeline({
+            ease: Power4.easeInOut,
             scrollTrigger: {
                 trigger: target,
-                start: 'top+=150 bottom',
-                end: 'bottom+=100 bottom',
-                scrub: true,
-                
+                start: 'top 90%',
+                end: 'top bottom',
+                toggleActions: 'restart none none reverse'
             }
-        })
+        });
+        tl.to(target, {'--scale-y': 1, ease: Power4.easeInOut})
+            .to(target, {'--scale-x': 1})
+            .set(target, {'--to': 'top right'})
+            .to(target, {'--scale-x': 0})
+            .to(target, {'--scale-y': 0})
     })
 }
 
@@ -304,18 +317,19 @@ followBtn.addEventListener('click', () => {
     followTl.resume().reversed(!followTl.reversed());
 })
 
-const preloaderTl = gsap.timeline();
-const preloaderTextTl = animatePreloaderText();
-preloaderTl.add(preloaderTextTl);
+// const preloaderTl = gsap.timeline();
+// const preloaderTextTl = animatePreloaderText();
+// preloaderTl.add(preloaderTextTl);
 
 
 // animateBeforeOnScroll();
 textRevealCircle();
 fadeRightOnScroll();
 blockReveal('.animate-block');
+textFromBottom('.text-from-bt');
 
 const loadTl = gsap.timeline();
-loadTl.add(preloaderTl);
+// loadTl.add(preloaderTl);
 
 window.addEventListener('DOMContentLoaded', () => {
     loaded = true;
@@ -340,6 +354,12 @@ const heroSwiper = new Swiper('.hero__swiper', {
 
 const introSwiper = new Swiper('.intro__swiper', {
     loop: true,
+    grabCursor: true,
+    spaceBetween: 50,
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
     autoplay: {
         delay: 5000,
     }
