@@ -108,6 +108,10 @@
     }
 }
 
+.jc-sb {
+    justify-content: space-between;
+}
+
 
 .flow > * + * {
     margin-block-start: 1em;
@@ -116,10 +120,30 @@
 
 .bg-2 {
     background-color: abs.$clr-bg2;
+    color: abs.$clr-text2;
 }
 
 .bg-3 {
     background-color: abs.$clr-bg3;
+}
+
+.hover-dots {
+    position: relative;
+
+    &::after {
+        content: '';
+        width: 30%;
+        aspect-ratio: 1;
+        background-image: url('../assets/img/dot-pattern.png');
+        background-size: 10px;
+        @include abs.absolute(bottom -2em right -1.5em);
+        opacity: 0;
+        @include abs.transition(opacity);
+    }
+
+    &:hover::after {
+        opacity: 1;
+    }
 }
 
 .animated-text span {

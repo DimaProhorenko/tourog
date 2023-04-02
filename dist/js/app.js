@@ -1,4 +1,4 @@
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const burgerEl = document.querySelector('.burger');
 const followBtn = document.querySelector('.header__follow');
@@ -245,7 +245,7 @@ function blockReveal(query) {
                 trigger: target,
                 start: 'top bottom',
                 end: 'top bottom',
-                // toggleActions: 'restart none none reverse'
+                toggleActions: 'restart none none none'
             }
         });
         tl.to(target, {'--scale-y': 1, ease: Power4.easeInOut})
@@ -331,6 +331,33 @@ textFromBottom('.text-from-bt');
 
 const loadTl = gsap.timeline();
 loadTl.add(preloaderTl);
+
+
+// Footer
+
+gsap.set('.footer__container', { yPercent: -50 })
+
+const uncover = gsap.timeline({ paused:true })
+
+uncover
+.to('.footer__container', { yPercent: 0, ease: 'none' })
+;
+
+ScrollTrigger.create({  
+  trigger: '.clients',
+  start: 'bottom bottom',
+  end: 'bottom top',
+  animation: uncover,
+  scrub: true,  
+})
+
+// // ScrollSmoother
+// const scroller = ScrollSmoother.create({
+//     wrapper: '.scroll-wrapper',
+//     content: '.scroll-content',
+//     smooth: 3.5,
+//     effects: true,
+// })
 
 
 window.addEventListener('DOMContentLoaded', () => {

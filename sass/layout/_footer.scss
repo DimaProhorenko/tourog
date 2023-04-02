@@ -1,0 +1,62 @@
+@use '../abstracts/' as abs;
+
+.footer {
+    height: 100vh;
+    padding-block: 6em;
+    background-image: url('../assets/img/footer/footer-bg.png');
+    background-size: cover;
+    
+    .wrapper {
+        height: 100vh;
+    }
+
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 2em;
+        margin-block-end: 4em;
+        padding-block-end: 4em;
+        border-block-end: 1px solid #eee;
+
+        @include abs.for-tablet-up {
+            flex-direction: row-reverse;
+        }
+    }
+
+    &__sm {
+        a {
+            font-size: .8rem;
+        }
+    }
+
+    &__content {
+        flex: 1;
+        // min-width: 70%;
+        max-width: 60%;
+        
+        @include abs.for-tablet-up {
+            flex: 2;
+        }
+    }
+
+    &__title {
+        font-size: 1.875rem;
+        font-size: clamp(1.875rem, 1.75rem + 1.625vw, 4.5rem);
+        font-weight: 400;
+        letter-spacing: 2px;
+        line-height: 1.2;
+        opacity: .7;
+
+        &--sm {
+            font-size: 1.25rem;
+            font-size: clamp(1.25rem, 1.175rem + 0.375vw, 1.625rem);
+            margin-block-end: 1em;
+        }
+    }
+
+
+    &__cta {
+        margin-block-start: 4em;
+    }
+}

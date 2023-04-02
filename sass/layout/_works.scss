@@ -1,0 +1,57 @@
+@use '../abstracts/' as abs;
+
+.works {
+    &__item {
+
+        @include abs.for-desktop-up {
+            max-width: abs.toRem(350);
+            &:nth-child(3n + 2) {
+                margin-block-start: 4em;
+            }
+        }
+
+        & > * + * {
+            margin-block-start: 1em;
+        }
+
+        &:hover {
+            .works__image {
+                box-shadow: 5px 5px 50px rgba(0, 0, 0, .9);
+                translate: 0 -1em;
+
+                &::after {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &__image {
+        position: relative;
+        transition: translate abs.$duration abs.$timing, box-shadow abs.$duration abs.$timing;
+
+        &::after {
+            content: '';
+            width: 70%;
+            height: 10%;
+            background-image: url('../assets/img/dot-pattern.png');
+            background-size: 10px;
+            @include abs.absolute(bottom 0 right -1.5em);
+            translate: 0 50%;
+            opacity: 0;
+            @include abs.transition(opacity);
+            z-index: -1;
+        }
+    }
+
+    &__title {
+        text-transform: uppercase;
+        font-size: 1.3rem;
+    }
+
+    &__tags {
+        font-size: .75rem;
+        text-transform: uppercase;
+        opacity: .7;
+    }
+}
